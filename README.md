@@ -24,7 +24,8 @@ Profile Page
 # Sprints
 - Sprint 0
   - [x] Create server side file structure and initialize npm
-  - [ ] Create frontend application with `npx create-react-app`
+  - [x] Create frontend application with `npx create-react-app`
+  - [x] Split off into a development branch and start working
   - [ ] Use Express Server Cheatsheet in Notion to connect server and set up database
   - [ ] Run through Building a MERN app in Notion and set up some dummy twitter data to build initial UI components
 
