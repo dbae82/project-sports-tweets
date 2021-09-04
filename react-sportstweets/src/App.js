@@ -1,10 +1,15 @@
 import React from 'react';
+import Nav from './components/Nav';
+import Routes from './config/routes';
 
 import './App.css';
 
 function App() {
   return (
-    <h1>Welcome to React Sports Tweets!!</h1>
+    <div>
+      <Nav />
+      <Routes />
+    </div>
   );
 }
 
