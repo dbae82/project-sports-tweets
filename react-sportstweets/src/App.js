@@ -1,6 +1,7 @@
 import React from 'react';
 import Nav from './components/Nav';
 import Routes from './config/routes';
+import Footer from './components/Footer';
 
 import './App.css';
 
@@ -9,6 +10,7 @@ function App() {
     <div>
       <Nav />
       <Routes />
+      <Footer />
     </div>
   );
 }

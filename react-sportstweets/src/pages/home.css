@@ -1,0 +1,6 @@
+body {
+    background-image: url('../assets/nba-teams.png');
+    background-size: contain;
+    background-attachment: fixed;
+    background-repeat: repeat;
+}

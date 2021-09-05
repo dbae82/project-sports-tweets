@@ -1,10 +1,10 @@
 import { Menu } from "semantic-ui-react";
 
-import './nav.css';
+import "./nav.css";
 
 const Nav = () => {
   return (
-    <div>
+    <div className="nav-bar">
       <Menu pointing secondary>
         <Menu.Item name="ESDB" active="" onClick="" />
         <Menu.Menu position="right">
