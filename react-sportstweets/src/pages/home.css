@@ -1,4 +1,4 @@
-.home-container img {
+#background-image {
     filter: brightness(40%);
     height: auto;
     left: 0;
@@ -12,5 +12,5 @@
 .home-container__card {
     background-color: whitesmoke;
     position: relative;
-    top: 14em;
+    top: 13em;
 }
