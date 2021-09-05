@@ -4,3 +4,8 @@ body {
     background-attachment: fixed;
     background-repeat: repeat;
 }
+
+.carousel-conatiner {
+    height: 300px;
+    width: 400px;
+}
