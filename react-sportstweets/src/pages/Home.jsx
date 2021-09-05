@@ -1,5 +1,3 @@
-import ImageCarousel from "../components/ImageCarousel";
-
 import "./home.css";
 
 const Home = () => {

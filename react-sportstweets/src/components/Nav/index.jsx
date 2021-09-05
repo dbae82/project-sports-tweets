@@ -1,15 +1,21 @@
-import { Menu } from "semantic-ui-react";
+import { Container, Menu } from "semantic-ui-react";
 
 import "./nav.css";
 
 const Nav = () => {
   return (
     <div className="nav-bar">
-      <Menu pointing secondary>
-        <Menu.Item name="ESDB" active="" onClick="" />
-        <Menu.Menu position="right">
-          <Menu.Item name="hello" active="" onClick="" />
-        </Menu.Menu>
+      <Menu fixed="top">
+        <Container>
+          <Menu.Item as="a" header>
+            <i class="fab fa-twitter fa-3x"></i>
+            Project Sports Tweets
+          </Menu.Item>
+          <Menu.Item as="a" position="right">
+            Register
+          </Menu.Item>
+          <Menu.Item as="a">Login</Menu.Item>
+        </Container>
       </Menu>
     </div>
   );

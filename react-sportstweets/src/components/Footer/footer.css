@@ -1,9 +1,7 @@
 .footer {
   background-color: whitesmoke;
   bottom: 0;
-  display: inline-block;
-  padding: 10px;
+  padding: 5px;
   position: fixed;
-  top: auto;
   width: 100%;
 }
