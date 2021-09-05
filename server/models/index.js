@@ -5,13 +5,15 @@ const connectionString = process.env.MONGODB_URI;
 
 const configOptions = {
     useNewUrlParser: true,
-    useCreateIndex: true,
+    // useCreateIndex: true,
     useUnifiedTopology: true,
-    useFindAndModify: false,
+    // useFindAndModify: false,
 };
 
 mongoose.connect(connectionString, configOptions)
     .then(() => console.log("MongoDB successfully connected..."))
     .catch((error) => console.log(`MongoDB connection error: ${error}`));
 
-module.exports = {};
+module.exports = {
+    User: require('./User'),
+};
