@@ -16,7 +16,7 @@ const RegisterForm = () => {
           <label>Password</label>
           <Input placeholder="Password" />
         </Form.Field>
-        <Button type="submit">Submit</Button>
+        <Button floated='right' type="submit" positive>Submit</Button>
       </Form>
     </div>
   );

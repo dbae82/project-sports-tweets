@@ -1,4 +1,5 @@
 import { Container, Image, Grid, Divider, Header } from "semantic-ui-react";
+import RegisterForm from "../components/Forms/RegisterForm";
 
 import background from "../assets/nba-teams.png";
 import splashGif from "../assets/splash-card.gif";
@@ -25,12 +26,7 @@ const Home = () => {
               <p>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea ad hic, consequuntur facere sint voluptatem sit dolorem, aliquid accusamus illo laudantium porro nihil culpa exercitationem quod ex soluta, obcaecati quibusdam!
               </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea ad hic, consequuntur facere sint voluptatem sit dolorem, aliquid accusamus illo laudantium porro nihil culpa exercitationem quod ex soluta, obcaecati quibusdam!
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea ad hic, consequuntur facere sint voluptatem sit dolorem, aliquid accusamus illo laudantium porro nihil culpa exercitationem quod ex soluta, obcaecati quibusdam!
-              </p>
+              <RegisterForm />
             </Container>
           </Grid.Column>
         </Grid>
