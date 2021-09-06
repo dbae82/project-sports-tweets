@@ -14,7 +14,9 @@ const Nav = (props) => {
             <i class="fab fa-twitter fa-3x"></i>
             Sports Tweets
           </Menu.Item>
-          <Menu.Item onClick={() => setOpen(true)} as="a" position='right'>Login</Menu.Item>
+          <Menu.Item onClick={() => setOpen(true)} as="a" position="right">
+            Login
+          </Menu.Item>
         </Container>
       </Menu>
       <Modal
@@ -23,8 +25,7 @@ const Nav = (props) => {
         open={open}
       >
         <Modal.Header>Log In</Modal.Header>
-        <Modal.Content>
-        </Modal.Content>
+        <Modal.Content></Modal.Content>
         <Modal.Actions>
           <Button color="black" onClick={() => setOpen(false)}>
             Cancel
