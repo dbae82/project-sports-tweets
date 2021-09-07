@@ -7,11 +7,13 @@ const TweetsContainer = (props) => {
   const [tweets, setTweets] = useState([]);
 
   useEffect(function () {
-      fetchTweets();
+    fetchTweets();
   }, []);
 
   const fetchTweets = () => {
-      TweetModel.getTweets().then(json => {setTweets(json.tweets)});
+    TweetModel.allFake().then((json) => {
+      setTweets(json.tweets);
+    });
   };
 
   return (

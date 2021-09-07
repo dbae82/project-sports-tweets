@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Container, Menu, Button, Modal } from "semantic-ui-react";
 
 import "./nav.css";
@@ -10,10 +11,12 @@ const Nav = (props) => {
     <div className="nav-bar">
       <Menu fixed="top">
         <Container>
-          <Menu.Item as="a" header>
-            <i class="fab fa-twitter fa-3x"></i>
-            Sports Tweets
-          </Menu.Item>
+          <NavLink exact to="/">
+            <Menu.Item as="a" header>
+              <i class="fab fa-twitter fa-3x"></i>
+              Sports Tweets
+            </Menu.Item>
+          </NavLink>
           <Menu.Item onClick={() => setOpen(true)} as="a" position="right">
             Login
           </Menu.Item>

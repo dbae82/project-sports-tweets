@@ -7,7 +7,7 @@ const TweetCard = (props) => {
         <i class="far fa-user"></i>
       </Feed.Label>
       <Feed.Content>
-          Test tweet card
+          <p>{props.data.text}</p>
       </Feed.Content>
     </Feed.Event>
   );
