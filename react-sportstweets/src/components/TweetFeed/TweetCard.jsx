@@ -1,15 +1,17 @@
-import { Feed } from "semantic-ui-react";
+import { Feed, Segment } from "semantic-ui-react";
 
 const TweetCard = (props) => {
   return (
-    <Feed.Event>
-      <Feed.Label>
-        <i class="far fa-user"></i>
-      </Feed.Label>
-      <Feed.Content>
+    <Segment raised>
+      <Feed.Event>
+        <Feed.Label>
+          <i class="far fa-user"></i>
+        </Feed.Label>
+        <Feed.Content>
           <p>{props.data.text}</p>
-      </Feed.Content>
-    </Feed.Event>
+        </Feed.Content>
+      </Feed.Event>
+    </Segment>
   );
 };
 
