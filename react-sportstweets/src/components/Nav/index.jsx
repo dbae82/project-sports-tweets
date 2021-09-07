@@ -17,6 +17,9 @@ const Nav = (props) => {
               Sports Tweets
             </Menu.Item>
           </NavLink>
+          <NavLink exact to="/feed">
+            <Menu.Item as="a" id="feed-link">Feed</Menu.Item>
+          </NavLink>
           <Menu.Item onClick={() => setOpen(true)} as="a" position="right">
             Login
           </Menu.Item>

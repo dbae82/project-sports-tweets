@@ -8,9 +8,11 @@ const TweetFeed = (props) => {
     return props.tweets.map((tweet) => <TweetCard data={tweet} />);
   };
   return (
-    <Container>
-      <Feed>{generateTweets()}</Feed>
-    </Container>
+    <div>
+      <Container>
+        <Feed>{generateTweets()}</Feed>
+      </Container>
+    </div>
   );
 };
 

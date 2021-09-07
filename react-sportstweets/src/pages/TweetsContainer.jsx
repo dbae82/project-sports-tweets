@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
+import { Container } from "semantic-ui-react";
 
 import TweetFeed from "../components/TweetFeed";
 import TweetModel from "../models/tweet";
+
+import "./TweetsContainer.css";
 
 const TweetsContainer = (props) => {
   const [tweets, setTweets] = useState([]);
@@ -18,7 +21,9 @@ const TweetsContainer = (props) => {
 
   return (
     <div className="tweets-container">
-      <h1>Your Feed</h1>
+      <Container className="tweets-feed__hero">
+        <h1>Knicks</h1>
+      </Container>
       <TweetFeed tweets={tweets} />
     </div>
   );

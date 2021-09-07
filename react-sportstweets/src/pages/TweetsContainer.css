@@ -1,0 +1,17 @@
+.tweets-feed__hero {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.tweets-feed__hero h1 {
+    padding: 30px;
+    height: 200px;
+    line-height: 200px;
+    color: whitesmoke;
+    font-size: 60px;
+    margin: 0;
+    background: linear-gradient(to top, black, transparent), url(https://logos-world.net/wp-content/uploads/2020/05/New-York-Knicks-Symbol.jpg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

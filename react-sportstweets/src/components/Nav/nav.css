@@ -1,3 +1,7 @@
 .nav-bar {
     background-color: whitesmoke;
 }
+
+#feed-link {
+    height: 68px;
+}
