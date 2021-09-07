@@ -9,14 +9,14 @@ There will also be a button on each individual tweet so that the user could then
 The user will be able to change team selection and choose within their profile to see all the tweets about whichever team they select and it will update their profile. Then they can go  back to the tweets show page with the new filtered stream of tweets.
 
 # MVP
-[x] Use a database - will be using MongoDB Atlas
-[ ] Build a full-stack application - building a MERN app
-[ ] Create a complete product - full CRUD functionality will be the users model
-[ ] Create a focused product. Know which features are essential to build for your MVP and which to set aside for later.
-[x] Craft thoughtful user stories that are significant enough to help you ensure a pleasing and logical user experience.
-[ ] Handle errors gracefully, and provide useful feedback to users when errors or validation failures do occur.
-[ ] Make a product that's impressive-looking; up your design and style game to kick your portfolio up a notch.
-[ ] Deploy your application online
+- [x] Use a database - will be using MongoDB Atlas
+- [ ] Build a full-stack application - building a MERN app
+- [ ] Create a complete product - full CRUD functionality will be the users model
+- [ ] Create a focused product. Know which features are essential to build for your MVP and which to set aside for later.
+- [x] Craft thoughtful user stories that are significant enough to help you ensure a pleasing and logical user experience.
+- [ ] Handle errors gracefully, and provide useful feedback to users when errors or validation failures do occur.
+- [ ] Make a product that's impressive-looking; up your design and style game to kick your portfolio up a notch.
+- [ ] Deploy your application online
 
 # Wireframes
 Splash Page
