@@ -7,8 +7,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/api/vi/user', routes.user);
+app.use('/api/v1/auth', routes.auth);
+app.use('/api/v1/user', routes.user);
 
-app.listen(PORT, () => {
-    console.log(`Listening for client requests on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
