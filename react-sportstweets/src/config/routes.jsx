@@ -1,6 +1,7 @@
 import { Switch, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
+import RegisterForm from "../components/Forms/RegisterForm";
 import TweetsContainer from "../pages/TweetsContainer";
 
 const Routes = (props) => {
