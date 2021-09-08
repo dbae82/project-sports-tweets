@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const ctrl = require('../controllers');
 
-router.get('/', ctrl.user.show);
+const authRequired = require('../middleware/authRequired');
+
+router.get('/', authRequired, ctrl.user.show);
 
 module.exports = router;
