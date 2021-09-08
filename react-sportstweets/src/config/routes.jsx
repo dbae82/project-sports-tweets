@@ -5,6 +5,7 @@ import { loggedInState } from "../recoil/selectors";
 
 import Home from "../pages/Home";
 import TweetsContainer from "../pages/TweetsContainer";
+import Profile from "../pages/Profile";
 
 const Routes = (props) => {
   const isLoggedIn = useRecoilValue(loggedInState);
@@ -15,6 +16,7 @@ const Routes = (props) => {
       {isLoggedIn ? (
         <Switch>
           <Route exact path="/feed" component={TweetsContainer} />
+          <Route exact path='/profile' component={Profile} />
         </Switch>
       ) : (
         <Redirect to="/" />

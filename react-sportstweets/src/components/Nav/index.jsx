@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { AuthModel, UserModel } from "../../models";
 import { NavLink } from "react-router-dom";
-import { Container, Menu, Button, Modal, Form, Input } from "semantic-ui-react";
+import {
+  Container,
+  Menu,
+  Button,
+  Modal,
+  Form,
+  Input,
+  Image,
+} from "semantic-ui-react";
 
 import { userState } from "../../recoil/atoms";
 import { useRecoilState } from "recoil";
@@ -69,6 +77,11 @@ const Nav = (props) => {
               <Menu.Item onClick={logout} as="a" position="right">
                 Logout
               </Menu.Item>
+              <NavLink exact to="/profile">
+                <Menu.Item as="a" id="profile-link">
+                  <Image src={user.avatar} size="mini" />
+                </Menu.Item>
+              </NavLink>
             </>
           ) : (
             <Menu.Item onClick={() => setOpen(true)} as="a" position="right">
