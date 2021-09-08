@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Container } from "semantic-ui-react";
 
 import TweetFeed from "../components/TweetFeed";
-import TweetModel from "../models/tweet";
+import { TweetModel } from "../models";
 
 import "./TweetsContainer.css";
 
