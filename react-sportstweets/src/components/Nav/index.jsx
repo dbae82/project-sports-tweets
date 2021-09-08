@@ -1,11 +1,40 @@
 import React, { useState } from "react";
+import { AuthModel, UserModel } from "../../models";
 import { NavLink } from "react-router-dom";
 import { Container, Menu, Button, Modal, Form, Input } from "semantic-ui-react";
+
+import { userState } from "../../recoil/atoms";
+import { useRecoilState } from "recoil";
 
 import "./nav.css";
 
 const Nav = (props) => {
   const [open, setOpen] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const setUser = useRecoilState(userState);
+
+  function handleSubmit(event) {
+    setError("");
+    event.preventDefault();
+    const credentials = { username, password };
+
+    AuthModel.login(credentials).then((json) => {
+      if (json.status === 400) {
+        setError(json.message);
+      }
+
+      if (json.status === 200) {
+        localStorage.setItem("uid", json.token);
+        UserModel.show().then((json) => {
+          setUser(json.data);
+          // need to redirect
+        });
+      }
+    });
+  }
 
   return (
     <div className="nav-bar">
@@ -35,14 +64,28 @@ const Nav = (props) => {
       >
         <Modal.Header>Log In</Modal.Header>
         <Modal.Content>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Field>
-              <label>Username</label>
-              <Input placeholder="Username" icon="user" />
+              <label htmlFor="username">Username</label>
+              <Input
+                placeholder="Username"
+                icon="user"
+                type="text"
+                name="username"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+              />
             </Form.Field>
             <Form.Field>
-              <label>Password</label>
-              <Input placeholder="Password" icon="lock" />
+              <label htmlFor="password">Password</label>
+              <Input
+                placeholder="Password"
+                icon="lock"
+                type="password"
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
             </Form.Field>
           </Form>
         </Modal.Content>
@@ -54,8 +97,10 @@ const Nav = (props) => {
             content="Log In"
             labelPosition="right"
             icon="checkmark"
-            onClick={() => setOpen(false)}
+            onClick={handleSubmit}
             positive
+            type='submit'
+            value='Login'
           />
         </Modal.Actions>
       </Modal>

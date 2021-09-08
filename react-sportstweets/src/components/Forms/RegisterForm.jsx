@@ -7,18 +7,18 @@ const RegisterForm = (props) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [error, setError] = useState("");
+  const [error, setError] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
     const user = { username, email, password };
     AuthModel.register(user).then((json) => {
-      // if (json.status === 400 && json.status === 500) {
-      //   setError(json.message);
-      // }
+      if (json.status === 400 && json.status === 500) {
+        setError(json.message);
+      }
 
       if (json.status === 201) {
-        props.history.push("/feed");
+        // need to redirect
       }
     });
   }
