@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AuthModel, UserModel } from "../../models";
 import { NavLink } from "react-router-dom";
 import { Container, Menu, Button, Modal, Form, Input } from "semantic-ui-react";
@@ -14,7 +14,20 @@ const Nav = (props) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const setUser = useRecoilState(userState);
+  const [user, setUser] = useRecoilState(userState);
+
+  useEffect(function () {
+    if (localStorage.getItem("uid")) {
+      UserModel.show().then((json) => {
+        setUser(json.data);
+      });
+    }
+  }, []);
+
+  const logout = () => {
+    setUser(null);
+    localStorage.clear();
+  };
 
   function handleSubmit(event) {
     setError("");
@@ -30,7 +43,7 @@ const Nav = (props) => {
         localStorage.setItem("uid", json.token);
         UserModel.show().then((json) => {
           setUser(json.data);
-          // need to redirect
+          setOpen(false);
         });
       }
     });
@@ -46,14 +59,22 @@ const Nav = (props) => {
               Sports Tweets
             </Menu.Item>
           </NavLink>
-          <NavLink exact to="/feed">
-            <Menu.Item as="a" id="feed-link">
-              Feed
+          {user ? (
+            <>
+              <NavLink exact to="/feed">
+                <Menu.Item as="a" id="feed-link">
+                  Feed
+                </Menu.Item>
+              </NavLink>
+              <Menu.Item onClick={logout} as="a" position="right">
+                Logout
+              </Menu.Item>
+            </>
+          ) : (
+            <Menu.Item onClick={() => setOpen(true)} as="a" position="right">
+              Login
             </Menu.Item>
-          </NavLink>
-          <Menu.Item onClick={() => setOpen(true)} as="a" position="right">
-            Login
-          </Menu.Item>
+          )}
         </Container>
       </Menu>
       <Modal
@@ -99,8 +120,8 @@ const Nav = (props) => {
             icon="checkmark"
             onClick={handleSubmit}
             positive
-            type='submit'
-            value='Login'
+            type="submit"
+            value="Login"
           />
         </Modal.Actions>
       </Modal>

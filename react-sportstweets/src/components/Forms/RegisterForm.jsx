@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Form, Input, Button } from "semantic-ui-react";
 
-import { AuthModel } from "../../models";
+import { AuthModel, UserModel } from "../../models";
+
+import { userState } from "../../recoil/atoms";
+import { useSetRecoilState } from "recoil";
 
 const RegisterForm = (props) => {
   const [username, setUsername] = useState("");
@@ -9,16 +12,30 @@ const RegisterForm = (props) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const setUser = useSetRecoilState(userState);
+
   function handleSubmit(event) {
     event.preventDefault();
     const user = { username, email, password };
+    const login = { username, password };
     AuthModel.register(user).then((json) => {
       if (json.status === 400 && json.status === 500) {
         setError(json.message);
       }
 
       if (json.status === 201) {
-        // need to redirect
+        AuthModel.login(login).then((json) => {
+          if (json.status === 400) {
+            setError(json.message);
+          }
+
+          if (json.status === 200) {
+            localStorage.setItem("uid", json.token);
+            UserModel.show().then((json) => {
+              setUser(json.data);
+            });
+          }
+        });
       }
     });
   }
@@ -59,7 +76,7 @@ const RegisterForm = (props) => {
             value={password}
           />
         </Form.Field>
-        <Button floated="right" type="submit" positive value='Register'>
+        <Button floated="right" type="submit" positive value="Register">
           Submit
         </Button>
       </Form>

@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import { useRecoilValue } from "recoil";
 import { loggedInState } from "../recoil/selectors";
@@ -12,7 +12,13 @@ const Routes = (props) => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/feed" component={TweetsContainer} />
+      {isLoggedIn ? (
+        <Switch>
+          <Route exact path="/feed" component={TweetsContainer} />
+        </Switch>
+      ) : (
+        <Redirect to="/" />
+      )}
     </Switch>
   );
 };
