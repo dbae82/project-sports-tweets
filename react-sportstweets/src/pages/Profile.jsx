@@ -62,15 +62,15 @@ const Profile = () => {
             </Menu.Menu>
           </Menu>
           {item === "bio" ? (
-            <Segment raised>
+            <Segment raised className='profile-container__segment'>
               <h3>user.bio</h3>
             </Segment>
           ) : item === "favorite team" ? (
-            <Segment raised>
+            <Segment raised className='profile-container__segment'>
               <h3>user.favTeam</h3>
             </Segment>
           ) : (
-            <Segment raised>
+            <Segment raised className='profile-container__segment'>
               <h3>user.update</h3>
             </Segment>
           )}

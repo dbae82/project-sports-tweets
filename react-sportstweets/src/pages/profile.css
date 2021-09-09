@@ -13,13 +13,21 @@
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
+    -webkit-box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.25); 
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.25);
 }
 
 .profile-container img {
     bottom: 90px;
     left: 25px;
+    -webkit-box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.25); 
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.25);
 }
 
 #profile-username {
-    margin-top: -100px;
+    margin-top: -75px;
+}
+
+.profile-container__segment {
+    height: 350px;
 }
