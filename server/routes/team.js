@@ -3,7 +3,7 @@ const ctrl = require('../controllers');
 
 const authRequired = require('../middleware/authRequired');
 
-router.get('/', authRequired, ctrl.teams.index);
-router.get('/:id'. ctrl.games.show);
+router.get('/', authRequired, ctrl.team.index);
+router.get('/:id', ctrl.team.show);
 
 module.exports = router;

@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use('/api/v1/teams', routes.teams);
+app.use('/api/v1/teams', routes.team);
 app.use('/api/v1/auth', routes.auth);
 app.use('/api/v1/user', routes.user);
 

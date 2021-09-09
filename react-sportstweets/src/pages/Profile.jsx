@@ -7,6 +7,9 @@ import {
   Header,
   Menu,
   Segment,
+  Form,
+  TextArea,
+  Button,
 } from "semantic-ui-react";
 
 import { userState } from "../recoil/atoms";
@@ -14,17 +17,37 @@ import { useRecoilState } from "recoil";
 
 import "./profile.css";
 
-const Profile = () => {
+const Profile = (props) => {
   const [item, itemClick] = useState("bio");
+  const [bio, setBio] = useState("");
+  const [error, setError] = useState("");
   const [user, setUser] = useRecoilState(userState);
+  const [displayBio, setDisplayBio] = useState(user.bio);
 
-  useEffect(function () {
-    if (localStorage.getItem("uid")) {
-      UserModel.show().then((json) => {
-        setUser(json.data);
-      });
-    }
-  }, []);
+  useEffect(
+    function () {
+      if (localStorage.getItem("uid")) {
+        UserModel.show().then((json) => {
+          setUser(json.data);
+        });
+      }
+    },
+    [displayBio]
+  );
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const update = { bio };
+    UserModel.update(props.match.params.id, update).then((json) => {
+      if (json.status === 500) {
+        setError(json.message);
+      }
+      if (json.status === 200) {
+        setDisplayBio(bio);
+        itemClick("bio");
+      }
+    });
+  }
 
   return (
     <Container className="profile-container">
@@ -62,16 +85,36 @@ const Profile = () => {
             </Menu.Menu>
           </Menu>
           {item === "bio" ? (
-            <Segment raised className='profile-container__segment'>
-              <h3>user.bio</h3>
+            <Segment raised className="profile-container__segment">
+              {user.bio === undefined ? (
+                <h3>
+                  Use the update section to tell us a little about yourself 👍
+                </h3>
+              ) : (
+                <h3>{displayBio}</h3>
+              )}
             </Segment>
           ) : item === "favorite team" ? (
-            <Segment raised className='profile-container__segment'>
+            <Segment raised className="profile-container__segment">
               <h3>user.favTeam</h3>
             </Segment>
           ) : (
-            <Segment raised className='profile-container__segment'>
-              <h3>user.update</h3>
+            <Segment raised className="profile-container__segment">
+              <Form onSubmit={handleSubmit}>
+                <Form.Field>
+                  <label htmlFor="bio">Bio</label>
+                  <TextArea
+                    placeholder="Tell us about yourself"
+                    type="text"
+                    name="bio"
+                    onChange={(e) => setBio(e.target.value)}
+                    value={bio}
+                  />
+                </Form.Field>
+                <Button floated="right" type="submit" positive value="Update">
+                  Update
+                </Button>
+              </Form>
             </Segment>
           )}
         </Grid.Column>

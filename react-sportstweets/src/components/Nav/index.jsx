@@ -77,7 +77,7 @@ const Nav = (props) => {
               <Menu.Item onClick={logout} as="a" position="right">
                 Logout
               </Menu.Item>
-              <NavLink exact to="/profile">
+              <NavLink exact to={`/profile/${user._id}`}>
                 <Menu.Item as="a" id="profile-link">
                   <Image src={user.avatar} size="mini" circular />
                 </Menu.Item>

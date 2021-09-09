@@ -1,5 +1,5 @@
 module.exports = {
-    teams: require('./teams'),
+    team: require('./team'),
     auth: require('./auth'),
     user: require('./user'),
 };

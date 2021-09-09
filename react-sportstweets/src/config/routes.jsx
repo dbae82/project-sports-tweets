@@ -16,7 +16,7 @@ const Routes = (props) => {
       {isLoggedIn ? (
         <Switch>
           <Route exact path="/feed" component={TweetsContainer} />
-          <Route exact path='/profile' component={Profile} />
+          <Route exact path='/profile/:id' component={Profile} />
         </Switch>
       ) : (
         <Redirect to="/" />
