@@ -79,7 +79,7 @@ const Nav = (props) => {
               </Menu.Item>
               <NavLink exact to="/profile">
                 <Menu.Item as="a" id="profile-link">
-                  <Image src={user.avatar} size="mini" />
+                  <Image src={user.avatar} size="mini" circular />
                 </Menu.Item>
               </NavLink>
             </>
