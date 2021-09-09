@@ -23,6 +23,10 @@ const userSchema = new Schema({
         default: 'https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?b=1&k=20&m=1223671392&s=170667a&w=0&h=J-o-ntQutLd5iHQEWAd-huWt8uBanu4O8V0O1BaG7nU='
     },
     bio: String,
+    favTeam: {
+        type: mongoose.Types.ObjectId,
+        ref: "Team",
+    }
 },
     {
         timestamps: true,
