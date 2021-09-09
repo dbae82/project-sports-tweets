@@ -1,0 +1,14 @@
+{
+    "teams": [
+        {
+            "name": "New York Knicks",
+            "sport": "NBA",
+            "artUrl": "https://i.imgur.com/IYwOBAR.jpg"
+        },
+        {
+            "name": "Golden State Warriors",
+            "sport": "NBA",
+            "artUrl": "https://i.imgur.com/bgygT2Y.png"
+        }
+    ]
+}
