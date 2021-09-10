@@ -9,18 +9,13 @@ import Profile from "../pages/Profile";
 
 const Routes = (props) => {
   const isLoggedIn = useRecoilValue(loggedInState);
+  console.log(isLoggedIn, "check");
 
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      {isLoggedIn ? (
-        <Switch>
-          <Route exact path="/feed" component={TweetsContainer} />
-          <Route exact path='/profile/:id' component={Profile} />
-        </Switch>
-      ) : (
-        <Redirect to="/" />
-      )}
+      <Route exact path="/feed" component={TweetsContainer} />
+      <Route exact path="/profile/:id" component={Profile} />
     </Switch>
   );
 };

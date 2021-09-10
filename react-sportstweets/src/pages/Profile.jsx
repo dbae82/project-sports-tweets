@@ -12,7 +12,7 @@ import {
   Button,
 } from "semantic-ui-react";
 
-import { userState } from "../recoil/atoms";
+import { userState } from "../recoil/userAtoms";
 import { useRecoilState } from "recoil";
 
 import "./profile.css";

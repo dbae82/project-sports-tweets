@@ -1,6 +1,6 @@
-import { Router } from "react-router-dom";
+// import { Router } from "react-router-dom";
 import { Container, Image, Grid, Divider, Header } from "semantic-ui-react";
-import RegisterForm from "../components/Forms/RegisterForm";
+// import RegisterForm from "../components/Forms/RegisterForm";
 
 import background from "../assets/nba-teams.png";
 import splashGif from "../assets/splash-card.gif";
@@ -35,7 +35,7 @@ const Home = () => {
                 accusamus illo laudantium porro nihil culpa exercitationem quod
                 ex soluta, obcaecati quibusdam!
               </p>
-              <RegisterForm />
+              {/* <RegisterForm /> */}
             </Container>
           </Grid.Column>
         </Grid>

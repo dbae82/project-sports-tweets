@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { AuthModel, UserModel } from "../../models";
+import React from "react";
+// import { AuthModel, UserModel } from "../../models";
 import { NavLink } from "react-router-dom";
 import {
   Container,
@@ -11,51 +11,52 @@ import {
   Image,
 } from "semantic-ui-react";
 
-import { userState } from "../../recoil/atoms";
-import { useRecoilState } from "recoil";
+// import { userState } from "../../recoil/userAtoms";
+// import { useRecoilState } from "recoil";
 
 import "./nav.css";
 
 const Nav = (props) => {
-  const [open, setOpen] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  // const [openTo, setOpenTo] = useState(false);
+  // const [open, setOpen] = useState(false);
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [error, setError] = useState("");
 
-  const [user, setUser] = useRecoilState(userState);
+  // const [user, setUser] = useRecoilState(userState);
 
-  useEffect(function () {
-    if (localStorage.getItem("uid")) {
-      UserModel.show().then((json) => {
-        setUser(json.data);
-      });
-    }
-  }, []);
+  // useEffect(function () {
+  //   if (localStorage.getItem("uid")) {
+  //     UserModel.show().then((json) => {
+  //       setUser(json.data);
+  //     });
+  //   }
+  // }, []);
 
-  const logout = () => {
-    setUser(null);
-    localStorage.clear();
-  };
+  // const logout = () => {
+  //   setUser(null);
+  //   localStorage.clear();
+  // };
 
-  function handleSubmit(event) {
-    setError("");
-    event.preventDefault();
-    const credentials = { username, password };
+  // function handleSubmit(event) {
+  //   setError("");
+  //   event.preventDefault();
+  //   const credentials = { username, password };
 
-    AuthModel.login(credentials).then((json) => {
-      if (json.status === 400) {
-        setError(json.message);
-      }
+  //   AuthModel.login(credentials).then((json) => {
+  //     if (json.status === 400) {
+  //       setError(json.message);
+  //     }
 
-      if (json.status === 200) {
-        localStorage.setItem("uid", json.token);
-        UserModel.show().then((json) => {
-          setUser(json.data);
-          setOpen(false);
-        });
-      }
-    });
-  }
+  //     if (json.status === 200) {
+  //       localStorage.setItem("uid", json.token);
+  //       UserModel.show().then((json) => {
+  //         setUser(json.data);
+  //         setOpen(false);
+  //       });
+  //     }
+  //   });
+  // }
 
   return (
     <div className="nav-bar">
@@ -67,38 +68,38 @@ const Nav = (props) => {
               Sports Tweets
             </Menu.Item>
           </NavLink>
-          {user ? (
+          {props.user ? (
             <>
               <NavLink exact to="/feed">
                 <Menu.Item as="a" id="feed-link">
                   Feed
                 </Menu.Item>
               </NavLink>
-              <Menu.Item onClick={logout} as="a" position="right">
+              <Menu.Item onClick={props.logout} as="a" position="right">
                 Logout
               </Menu.Item>
-              <NavLink exact to={`/profile/${user._id}`}>
+              <NavLink exact to={`/profile/${props.user._id}`}>
                 <Menu.Item as="a" id="profile-link">
-                  <Image src={user.avatar} size="mini" circular />
+                  <Image src={props.user.avatar} size="mini" circular />
                 </Menu.Item>
               </NavLink>
             </>
           ) : (
-            <Menu.Item onClick={() => setOpen(true)} as="a" position="right">
+            <Menu.Item onClick={props.modal} as="a" position="right">
               Login
             </Menu.Item>
           )}
         </Container>
       </Menu>
       <Modal
-        onClose={() => setOpen(false)}
-        onOpen={() => setOpen(true)}
-        open={open}
+        onClose={props.modal}
+        onOpen={props.modal}
+        open={props.setOpen}
         size="tiny"
       >
         <Modal.Header>Log In</Modal.Header>
         <Modal.Content>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={props.handleSubmit}>
             <Form.Field>
               <label htmlFor="username">Username</label>
               <Input
@@ -106,8 +107,8 @@ const Nav = (props) => {
                 icon="user"
                 type="text"
                 name="username"
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
+                onChange={props.addUserName}
+                value={props.username}
               />
             </Form.Field>
             <Form.Field>
@@ -117,21 +118,21 @@ const Nav = (props) => {
                 icon="lock"
                 type="password"
                 name="password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
+                onChange={props.addPassword}
+                value={props.password}
               />
             </Form.Field>
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button color="black" onClick={() => setOpen(false)}>
+          <Button color="black" onClick={props.modal}>
             Cancel
           </Button>
           <Button
             content="Log In"
             labelPosition="right"
             icon="checkmark"
-            onClick={handleSubmit}
+            onClick={props.handleSubmit}
             positive
             type="submit"
             value="Login"
