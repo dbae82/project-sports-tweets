@@ -93,7 +93,7 @@ const Profile = (props) => {
       </div>
       <Grid>
         <Grid.Column width={5}>
-          <Image circular src={user.avatar} size="medium" />
+          <Image circular src={user.avatar} size="medium" id="profile-avatar" />
           <Header as="h1" textAlign="center" id="profile-username">
             {user.username}
           </Header>
@@ -146,7 +146,7 @@ const Profile = (props) => {
                     value={bio}
                   />
                 </Form.Field>
-                <Divider />
+                {/* <Divider /> */}
                 <Form.Field>
                   <label htmlFor="avatar">Avatar</label>
                   <Input
@@ -158,7 +158,7 @@ const Profile = (props) => {
                     value={avatar}
                   />
                 </Form.Field>
-                <Divider />
+                {/* <Divider /> */}
                 <Form.Field>
                   <label htmlFor="favTeam">Favorite Team</label>
                   <Dropdown
