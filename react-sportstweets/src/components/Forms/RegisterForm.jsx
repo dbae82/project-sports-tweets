@@ -11,6 +11,7 @@ const RegisterForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [favTeams, setFavTeams] = useState("");
+  const [favTeam, setFavTeam] = useState("");
   const [error, setError] = useState("");
 
   const setUser = useSetRecoilState(userState);
@@ -21,9 +22,17 @@ const RegisterForm = (props) => {
     });
   }, []);
 
+  function handleChange(event) {
+    event.preventDefault();
+    const foundTeam = favTeams.filter(function(value, index) {
+      if (value.key === event.target.innerText) return true;
+    });
+    setFavTeam(foundTeam[0]._id);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
-    const user = { username, email, password };
+    const user = { username, email, password, favTeam };
     const login = { username, password };
     AuthModel.register(user).then((json) => {
       if (json.status === 400 && json.status === 500) {
@@ -90,6 +99,7 @@ const RegisterForm = (props) => {
             fluid
             selection
             options={favTeams}
+            onChange={handleChange}
           />
         </Form.Field>
         <Button floated="right" type="submit" positive value="Register">

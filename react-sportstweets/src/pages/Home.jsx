@@ -1,5 +1,5 @@
 import { Router } from "react-router-dom";
-import { Container, Image, Grid, Divider, Header } from "semantic-ui-react";
+import { Container, Image, Grid, Divider, Header, Icon } from "semantic-ui-react";
 import RegisterForm from "../components/Forms/RegisterForm";
 
 import background from "../assets/nba-teams.png";
@@ -24,10 +24,7 @@ const Home = () => {
               </Header>
               <Divider />
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Praesentium beatae eum amet totam consequuntur neque adipisci
-                ad, quibusdam architecto dignissimos numquam enim sequi quasi,
-                quos illo animi fugiat eveniet quo?
+                Powered by Twitter <Icon name='twitter' />, Sports Tweets is your one stop shop to read up on all the latest news about your favorite sport team. Register below or, if you already have an account with us, log in above.
               </p>
               <RegisterForm />
             </Container>
