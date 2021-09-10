@@ -94,9 +94,7 @@ const Profile = (props) => {
           {item === "bio" ? (
             <Segment raised className="profile-container__segment">
               {user.bio === undefined ? (
-                <h3>
-                  Use the update section to tell us a little about yourself 👍
-                </h3>
+                <h3>Update your bio to tell us a little about yourself 👍</h3>
               ) : (
                 <h3>{displayBio}</h3>
               )}
@@ -118,6 +116,9 @@ const Profile = (props) => {
                     value={bio}
                   />
                 </Form.Field>
+                <Button floated="right" type="" negative value="Delete">
+                  Deactivate
+                </Button>
                 <Button floated="right" type="submit" positive value="Update">
                   Update
                 </Button>

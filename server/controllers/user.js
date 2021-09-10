@@ -32,7 +32,22 @@ const update = async (req, res, next) => {
     }
 };
 
+const destroy = async (req, res) => {
+    try {
+        const deletedUser = await User.findByIdAndDelete(req.params.id);
+        return res.status(200).json({
+            status: 200,
+            message: 'success',
+            data: deletedUser,
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: 500, message: 'Internal Server Error' });
+    }
+};
+
 module.exports = {
     show,
     update,
+    destroy,
 };
