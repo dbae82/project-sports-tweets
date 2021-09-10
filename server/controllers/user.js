@@ -18,7 +18,7 @@ const update = async (req, res, next) => {
     try {
         const updatedUser = await User.findByIdAndUpdate(
             req.params.id,
-            req.body,
+            { $set: req.body },
             { new: true }
         );
         return res.status(200).json({

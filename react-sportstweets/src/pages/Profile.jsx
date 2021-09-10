@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { UserModel } from "../models";
+import { UserModel, TeamModel } from "../models";
 import {
   Container,
   Grid,
@@ -11,6 +11,9 @@ import {
   TextArea,
   Button,
   Modal,
+  Divider,
+  Input,
+  Dropdown,
 } from "semantic-ui-react";
 
 import { userState } from "../recoil/atoms";
@@ -21,9 +24,12 @@ import "./profile.css";
 const Profile = (props) => {
   const [open, setOpen] = useState(false);
   const [item, itemClick] = useState("bio");
-  const [bio, setBio] = useState("");
-  const [error, setError] = useState("");
   const [user, setUser] = useRecoilState(userState);
+  const [bio, setBio] = useState(user.bio);
+  const [avatar, setAvatar] = useState(user.avatar);
+  const [favTeams, setFavTeams] = useState("");
+  const [favTeam, setFavTeam] = useState(user.favTeam);
+  const [error, setError] = useState("");
   const [displayBio, setDisplayBio] = useState(user.bio);
 
   useEffect(
@@ -34,12 +40,18 @@ const Profile = (props) => {
         });
       }
     },
-    [displayBio]
+    [user]
   );
+
+  useEffect(() => {
+    TeamModel.all().then((json) => {
+      setFavTeams(json.teams);
+    });
+  }, []);
 
   function handleSubmit(event) {
     event.preventDefault();
-    const update = { bio };
+    const update = { bio, avatar, favTeam };
     UserModel.update(props.match.params.id, update).then((json) => {
       if (json.status === 500) {
         setError(json.message);
@@ -49,6 +61,14 @@ const Profile = (props) => {
         itemClick("bio");
       }
     });
+  }
+
+  function handleChange(event) {
+    event.preventDefault();
+    const foundTeam = favTeams.filter(function(value, index) {
+      if (value.key === event.target.innerText) return true;
+    });
+    setFavTeam(foundTeam[0]._id);
   }
 
   const deleteUser = (event) => {
@@ -124,6 +144,29 @@ const Profile = (props) => {
                     name="bio"
                     onChange={(e) => setBio(e.target.value)}
                     value={bio}
+                  />
+                </Form.Field>
+                <Divider />
+                <Form.Field>
+                  <label htmlFor="avatar">Avatar</label>
+                  <Input
+                    placeholder="http://"
+                    icon="user"
+                    type="text"
+                    name="avatar"
+                    onChange={(e) => setAvatar(e.target.value)}
+                    value={avatar}
+                  />
+                </Form.Field>
+                <Divider />
+                <Form.Field>
+                  <label htmlFor="favTeam">Favorite Team</label>
+                  <Dropdown
+                    placeholder="Select Your Favorite Team"
+                    fluid
+                    selection
+                    options={favTeams}
+                    onChange={handleChange}
                   />
                 </Form.Field>
                 <Button floated="right" type="submit" positive value="Update">
