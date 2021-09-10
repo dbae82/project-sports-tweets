@@ -10,6 +10,7 @@ import {
   Form,
   TextArea,
   Button,
+  Modal,
 } from "semantic-ui-react";
 
 import { userState } from "../recoil/atoms";
@@ -18,6 +19,7 @@ import { useRecoilState } from "recoil";
 import "./profile.css";
 
 const Profile = (props) => {
+  const [open, setOpen] = useState(false);
   const [item, itemClick] = useState("bio");
   const [bio, setBio] = useState("");
   const [error, setError] = useState("");
@@ -48,6 +50,14 @@ const Profile = (props) => {
       }
     });
   }
+
+  const deleteUser = (event) => {
+    UserModel.delete(props.match.params.id).then((json) => {
+      setUser(null);
+      localStorage.clear();
+      props.history.push("/");
+    });
+  };
 
   return (
     <Container className="profile-container">
@@ -116,13 +126,44 @@ const Profile = (props) => {
                     value={bio}
                   />
                 </Form.Field>
-                <Button floated="right" type="" negative value="Delete">
-                  Deactivate
-                </Button>
                 <Button floated="right" type="submit" positive value="Update">
                   Update
                 </Button>
               </Form>
+              <Button
+                floated="right"
+                type="delete"
+                negative
+                value="Delete"
+                onClick={() => setOpen(true)}
+              >
+                Deactivate
+              </Button>
+              <Modal
+                onClose={() => setOpen(false)}
+                onOpen={() => setOpen(true)}
+                size="mini"
+                open={open}
+              >
+                <Modal.Header>Deactivate Your Account</Modal.Header>
+                <Modal.Content>
+                  <p>Are you sure you want to deactivate your accout?</p>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button color="black" onClick={() => setOpen(false)}>
+                    Cancel
+                  </Button>
+                  <Button
+                    content="Confirm"
+                    labelPosition="right"
+                    icon="delete"
+                    onClick={deleteUser}
+                    negative
+                    type="submit"
+                    value="Delete"
+                  />
+                </Modal.Actions>
+              </Modal>
             </Segment>
           )}
         </Grid.Column>

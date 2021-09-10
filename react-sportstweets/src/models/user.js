@@ -18,6 +18,9 @@ class User {
             },
         }).then(response => response.json());
     }
+    static delete(id) {
+        return fetch(`${url}/${id}`, { method: "DELETE" }).then(response => response.json());
+    }
 }
 
 export default User;
