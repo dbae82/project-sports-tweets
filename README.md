@@ -11,7 +11,7 @@ The user will be able to change team selection and choose within their profile t
 # MVP
 - [x] Use a database - will be using MongoDB Atlas
 - [ ] Build a full-stack application - building a MERN app
-- [ ] Create a complete product - full CRUD functionality will be the users model
+- [x] Create a complete product - full CRUD functionality will be the users model
 - [ ] Create a focused product. Know which features are essential to build for your MVP and which to set aside for later.
 - [x] Craft thoughtful user stories that are significant enough to help you ensure a pleasing and logical user experience.
 - [ ] Handle errors gracefully, and provide useful feedback to users when errors or validation failures do occur.
@@ -40,16 +40,16 @@ Profile Page
   - [x] Run through Building a MERN app in Notion and set up some dummy twitter data to build initial UI components
 
 - Sprint 1
-  - [ ] Build User and Team models and schemas 
+  - [x] Build User and Team models and schemas 
   - [ ] Connect Twitter Api to react front end
-  - [ ] Build seed file for Team models
+  - [x] Build seed file for Team models
   - [ ] Create styles for each team
 
 - Sprint 3
-  - [ ] Set up auth using JWT
-  - [ ] Set up JWT on front end
+  - [x] Set up auth using JWT
+  - [x] Set up JWT on front end
   - [ ] Set up error handling for sign up and sign in forms
-  - [ ] Build login and register components for frontend
+  - [x] Build login and register components for frontend
 
 - Sprint 4
   - [ ] 
