@@ -24,7 +24,7 @@ const Home = () => {
               </Header>
               <Divider />
               <p>
-                Powered by Twitter <Icon name='twitter' />, Sports Tweets is your one stop shop to read up on all the latest news about your favorite sport team. Register below or, if you already have an account with us, log in above.
+                Powered by Twitter <Icon name='twitter' /> Sports Tweets is your one stop shop to read up on all the latest news about your favorite sport team. Register below or, if you already have an account with us, log in above.
               </p>
               <RegisterForm />
             </Container>
