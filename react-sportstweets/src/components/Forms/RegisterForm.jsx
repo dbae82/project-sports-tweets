@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Form, Input, Button } from "semantic-ui-react";
+import { useState, useEffect } from "react";
+import { Form, Input, Button, Dropdown } from "semantic-ui-react";
 
-import { AuthModel, UserModel } from "../../models";
+import { AuthModel, UserModel, TeamModel } from "../../models";
 
 import { userState } from "../../recoil/atoms";
 import { useSetRecoilState } from "recoil";
@@ -10,9 +10,16 @@ const RegisterForm = (props) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [favTeams, setFavTeams] = useState("");
   const [error, setError] = useState("");
 
   const setUser = useSetRecoilState(userState);
+
+  useEffect(() => {
+    TeamModel.all().then((json) => {
+      setFavTeams(json.teams);
+    });
+  }, []);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -74,6 +81,15 @@ const RegisterForm = (props) => {
             name="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+          />
+        </Form.Field>
+        <Form.Field>
+          <label htmlFor="favTeam">Favorite Team</label>
+          <Dropdown
+            placeholder="Select Your Favorite Team"
+            fluid
+            selection
+            options={favTeams}
           />
         </Form.Field>
         <Button floated="right" type="submit" positive value="Register">

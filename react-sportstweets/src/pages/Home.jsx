@@ -29,12 +29,6 @@ const Home = () => {
                 ad, quibusdam architecto dignissimos numquam enim sequi quasi,
                 quos illo animi fugiat eveniet quo?
               </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea ad
-                hic, consequuntur facere sint voluptatem sit dolorem, aliquid
-                accusamus illo laudantium porro nihil culpa exercitationem quod
-                ex soluta, obcaecati quibusdam!
-              </p>
               <RegisterForm />
             </Container>
           </Grid.Column>

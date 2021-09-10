@@ -52,7 +52,14 @@ const Profile = (props) => {
   return (
     <Container className="profile-container">
       <div className="profile-container__hero">
-        <h1></h1>
+        <h1
+          style={{
+            background: `linear-gradient(to top, black, transparent), url(${user.favTeam.artUrl})`,
+            backgroundPosition: "top",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+        ></h1>
       </div>
       <Grid>
         <Grid.Column width={5}>
@@ -96,7 +103,7 @@ const Profile = (props) => {
             </Segment>
           ) : item === "favorite team" ? (
             <Segment raised className="profile-container__segment">
-              <h3>user.favTeam</h3>
+              <h3>{user.favTeam.value}</h3>
             </Segment>
           ) : (
             <Segment raised className="profile-container__segment">

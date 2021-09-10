@@ -2,7 +2,7 @@ const { User } = require('../models');
 
 const show = async (req, res, next) => {
     try {
-        const foundUser = await User.findById(req.userId);
+        const foundUser = await User.findById(req.userId).populate('favTeam');
         return res.status(200).json({
             status: 200,
             message: 'success',
