@@ -1,12 +1,24 @@
 {
     "teams": [
         {
-            "name": "New York Knicks",
+            "key": "New York Knicks",
+            "text": "New York Knicks",
+            "value": "New York Knicks",
+            "image": {
+                "avatar": true,
+                "src": "https://i.imgur.com/iATCy3u.png"
+            },
             "sport": "NBA",
             "artUrl": "https://i.imgur.com/IYwOBAR.jpg"
         },
         {
-            "name": "Golden State Warriors",
+            "key": "Golden State Warriors",
+            "text": "Golden State Warriors",
+            "value": "Golden State Warriors",
+            "image": {
+                "avatar": true,
+                "src": "https://i.imgur.com/rzx9Vzl.png"
+            },
             "sport": "NBA",
             "artUrl": "https://i.imgur.com/bgygT2Y.png"
         }

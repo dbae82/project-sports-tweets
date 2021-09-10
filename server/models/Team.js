@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const teamSchema = new Schema({
-    name: String,
+    key: String,
+    text: String,
+    value: String,
+    image: {},
     sport: String,
     artUrl: String,
 });
