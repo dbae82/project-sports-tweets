@@ -5,6 +5,7 @@ const express = require('express')
 const needle = require('needle')
 require('dotenv').config()
 const cors = require('cors');
+const { json } = require('express');
 const TOKEN = process.env.TWITTER_BEARER_TOKEN
 const PORT = process.env.TWITTER_PORT
 
@@ -15,14 +16,14 @@ const app = express()
 
 app.use(cors());
 
-app.get('/', async (req, res) => {
-    try {
-        const response = await startStream()
-        res.send(response)    
-    } catch (error) {
-        res.send(error)
-    }
-})
+// app.get('/', async (req, res) => {
+//     try {
+//         const response = await startStream()
+//         res.send(response)    
+//     } catch (error) {
+//         res.send(error)
+//     }
+// })
 
 const rulesURL = 'https://api.twitter.com/2/tweets/search/stream/rules'
 const streamURL = 'https://api.twitter.com/2/tweets/search/stream?tweet.fields=public_metrics&expansions=author_id'
@@ -77,37 +78,90 @@ async function deleteRules(rules) {
     return response.body
 }
 
+// function streamTweets() {
+//     const stream = needle.get(streamURL, {
+//         headers: {
+//             Authorization: `Bearer ${TOKEN}`
+//         }
+//     })
+//     console.log(stream);
+
+//     stream.on('data', (data) => {
+//         try {
+//             const jsonData = JSON.parse(data)
+//             // console.log(json);
+//             // stream.emit('data', jsonData)
+//             return jsonData;
+//         } catch (error) { }
+//     })
+// }
+
 function streamTweets() {
     const stream = needle.get(streamURL, {
-        headers: {
-            Authorization: `Bearer ${TOKEN}`
-        }
-    })
-
-    stream.on('data', (data) => {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    });
+  
+    stream
+      .on("data", (data) => {
         try {
-            const json = JSON.parse(data)
-            console.log(json);
-            stream.emit('data', json)
-        } catch (error) { }
-    })
-}
+          const jsonData = JSON.parse(data);
+          // console.log(json);
+          // stream.emit('data', jsonData)
+        } catch (error) {}
+      })
+      .on("error", (error) => {
+        if (error.code === "ETIMEDOUT") {
+          stream.emit("timeout");
+        }
+      });
+    return stream;
+  }
+
 
 // io.on('connection', () => {
 //     console.log('Client connected...');
 // })
 
+// const startStream = async () => {
+//     let currentRules
+//     try {
+//         currentRules = await getRules()
+//         await deleteRules(currentRules)
+//         await setRules()
+//     } catch (error) {
+//         console.error(error);
+//         // process.exit(1)
+//     }
+//     console.log(streamTweets(), "=====================");
+//     return streamTweets()
+// }
+
 const startStream = async () => {
     let currentRules
     try {
-        currentRules = await getRules()
-        await deleteRules(currentRules)
-        await setRules()
+      currentRules = await getRules()
+      await deleteRules(currentRules)
+      await setRules()
     } catch (error) {
-        console.error(error);
-        // process.exit(1)
+      console.error(error);
+      process.exit(1)
     }
-    streamTweets()
-}
+    const nbaTweets = streamTweets();
+    nbaTweets.on('readable', function() {
+      while (data = this.read()) {
+        console.log(JSON.parse(data), "🎸")
+        const jsonData = JSON.parse(data)
+        return jsonData
+      }
+    })
+  }
+
+  app.get('/', async (req, res) => {
+      const response = await startStream();
+      console.log(response, "======================");
+      res.send(response);
+  })
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
