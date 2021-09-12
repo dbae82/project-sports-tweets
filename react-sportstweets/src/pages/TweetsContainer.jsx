@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Container } from "semantic-ui-react";
+import { io } from "socket.io-client";
 
 import TweetFeed from "../components/TweetFeed";
 import { TweetModel } from "../models";
@@ -7,6 +8,7 @@ import { TweetModel } from "../models";
 import "./TweetsContainer.css";
 
 const TweetsContainer = (props) => {
+  const socket = io("http://localhost:4040");
   const [tweets, setTweets] = useState([]);
 
   useEffect(function () {
@@ -14,9 +16,12 @@ const TweetsContainer = (props) => {
   }, []);
 
   const fetchTweets = () => {
-    TweetModel.allFake().then((json) => {
-      setTweets(json.tweets);
-    });
+    // TweetModel.allFake().then((json) => {
+    //   setTweets(json.tweets);
+    // });
+    socket.on('tweet', (tweet) => {
+      console.log(tweet);
+    })
   };
 
   return (
