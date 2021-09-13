@@ -86,6 +86,11 @@ function streamTweets(socket) {
             socket.emit('tweet', json)
         } catch (error) { }
     })
+    socket.on('disconnect', () => {
+        socket.off('tweet')
+        socket.removeAllListeners('tweet')
+        console.log('Client disconnected')
+    })
 }
 
 io.on('connection', async () => {

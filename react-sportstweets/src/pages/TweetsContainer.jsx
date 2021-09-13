@@ -9,10 +9,21 @@ import "./TweetsContainer.css";
 
 const TweetsContainer = (props) => {
   const socket = io("http://localhost:4040");
+  // const connections = new Set()
   const [tweets, setTweets] = useState([]);
 
   useEffect(function () {
     fetchTweets();
+    return () => {
+      fetchTweets()
+      socket.on("disconnect", () => {
+        socket.off('tweet')
+        socket.removeAllListeners("tweet");
+        console.log("Socket disconnected");
+        // connections.delete(socket)
+      })
+
+    }
   }, []);
 
   const fetchTweets = () => {
@@ -21,9 +32,15 @@ const TweetsContainer = (props) => {
     // });
     socket.on('tweet', (tweet) => {
       console.log(tweet);
+      // connections.add(socket)
+      // let tweetList = []
+      // tweetList.push(tweet)
+      // console.log(tweetList, '==============================');
+      setTweets((prevState) => [...prevState, tweet])
     })
   };
-
+  
+  console.log(tweets);
   return (
     <div className="tweets-container">
       <Container className="tweets-feed__hero">
