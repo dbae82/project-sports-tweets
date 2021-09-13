@@ -5,7 +5,7 @@ import "./TweetFeed.css";
 
 const TweetFeed = (props) => {
   const generateTweets = () => {
-    return props.tweets.map((tweet) => <TweetCard data={tweet} />);
+    return props.tweets.map((tweet) => <TweetCard key={tweet.data.id} data={tweet} />);
   };
   return (
     <div>

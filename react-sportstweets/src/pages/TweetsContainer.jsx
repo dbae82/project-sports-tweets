@@ -17,8 +17,7 @@ const TweetsContainer = (props) => {
     return () => {
       fetchTweets()
       socket.on("disconnect", () => {
-        socket.off('tweet')
-        socket.removeAllListeners("tweet");
+        socket.disconnect()
         console.log("Socket disconnected");
         // connections.delete(socket)
       })

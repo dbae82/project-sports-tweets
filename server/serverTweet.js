@@ -22,7 +22,7 @@ const io = socketIo(server, { cors: {
 const rulesURL = 'https://api.twitter.com/2/tweets/search/stream/rules'
 const streamURL = 'https://api.twitter.com/2/tweets/search/stream?tweet.fields=public_metrics&expansions=author_id&user.fields=profile_image_url'
 
-const rules = [{ value: 'knicks' }]
+const rules = [{ value: 'nfl lang:en' }]
 
 async function getRules() {
     const response = await needle('get', rulesURL, {
@@ -86,11 +86,6 @@ function streamTweets(socket) {
             socket.emit('tweet', json)
         } catch (error) { }
     })
-    socket.on('disconnect', () => {
-        socket.off('tweet')
-        socket.removeAllListeners('tweet')
-        console.log('Client disconnected')
-    })
 }
 
 io.on('connection', async () => {
@@ -105,6 +100,10 @@ io.on('connection', async () => {
         process.exit(1)
     }
     streamTweets(io)
+    io.on('disconnect', () => {
+        io.disconnectSockets();
+        console.log('Client disconnected')
+    })
 })
 
 // const startStream = async () => {
