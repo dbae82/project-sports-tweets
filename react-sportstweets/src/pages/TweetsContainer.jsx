@@ -15,30 +15,29 @@ const TweetsContainer = (props) => {
   useEffect(function () {
     fetchTweets();
     return () => {
-      fetchTweets()
-      socket.on("disconnect", () => {
-        socket.disconnect()
+      // fetchTweets()
+      socket.on('disconnect', () => {
+        socket.close();
         console.log("Socket disconnected");
-        // connections.delete(socket)
       })
-
-    }
+      // connections.delete(socket)
+    };
   }, []);
 
   const fetchTweets = () => {
     // TweetModel.allFake().then((json) => {
     //   setTweets(json.tweets);
     // });
-    socket.on('tweet', (tweet) => {
-      console.log(tweet);
+    socket.on("tweet", (tweet) => {
+      // console.log(tweet);
       // connections.add(socket)
       // let tweetList = []
       // tweetList.push(tweet)
       // console.log(tweetList, '==============================');
-      setTweets((prevState) => [...prevState, tweet])
-    })
+      setTweets((prevState) => [...prevState, tweet]);
+    });
   };
-  
+
   console.log(tweets);
   return (
     <div className="tweets-container">
