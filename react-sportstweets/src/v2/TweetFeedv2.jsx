@@ -2,6 +2,10 @@ import React, { useEffect, useReducer } from "react";
 import Tweet from "./Tweetv2";
 import socketIOClient from "socket.io-client";
 
+import RuleList from "./RuleList";
+
+import "./v2.css";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "add_tweet":
@@ -36,7 +40,7 @@ const TweetFeed = () => {
     const streamTweets = () => {
         let socket;
 
-        socket = socketIOClient('http://localhost:4444/');
+        socket = socketIOClient('http://localhost:4444');
 
         socket.on('heartbeat', (data) => {
             dispatch({ type: "update_waiting" });
@@ -68,6 +72,7 @@ const TweetFeed = () => {
 
     return (
         <div>
+            <RuleList />
             {showTweets()}
         </div>
     );

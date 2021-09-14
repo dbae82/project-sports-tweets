@@ -4,10 +4,12 @@ const util = require('util')
 const request = require('request')
 const path = require('path')
 const socketIo = require('socket.io')
+const cors = require('cors');
 const http = require('http')
 require('dotenv').config()
 
 const app = express()
+app.use(cors());
 let port = process.env.ANOTHER_PORT
 const post = util.promisify(request.post)
 const get = util.promisify(request.get)
@@ -16,7 +18,11 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 const server = http.createServer(app)
-const io = socketIo(server)
+const io = socketIo(server, { cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    credentials: false
+}})
 
 const BEARER_TOKEN = process.env.TWITTER_BEARER_TOKEN
 
@@ -51,8 +57,8 @@ app.get('/api/rules', async (req, res) => {
     const token = BEARER_TOKEN
     const requestConfig = {
         url: rulesURL,
-        auth: {
-            bearer: token,
+        headers: {
+            Authorization: `Bearer ${token}`,
         },
         json: true,
     }
@@ -82,8 +88,8 @@ app.post('/api/rules', async (req, res) => {
     const token = BEARER_TOKEN
     const requestConfig = {
         url: rulesURL,
-        auth: {
-            bearer: token,
+        headers: {
+            Authorization: `Bearer ${token}`,
         },
         json: req.body,
     }
@@ -106,8 +112,8 @@ const streamTweets = (socket, token) => {
 
     const config = {
         url: streamURL,
-        auth: {
-            bearer: token,
+        headers: {
+            Authorization: `Bearer ${token}`,
         },
         timeout: 31000,
     }

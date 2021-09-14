@@ -34,7 +34,7 @@ const RuleList = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const exampleRule = "nba lang:en";
   const ruleMeaning = `This example rule will match Tweets about the NBA that is in English`;
-  const rulesURL = "/api/rules";
+  const rulesURL = "http://localhost:4444/api/rules";
 
   const createRule = async (e) => {
     e.preventDefault();
