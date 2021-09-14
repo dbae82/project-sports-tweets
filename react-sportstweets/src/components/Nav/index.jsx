@@ -99,28 +99,67 @@ const Nav = (props) => {
         <Modal.Header>Log In</Modal.Header>
         <Modal.Content>
           <Form onSubmit={handleSubmit}>
-            <Form.Field>
-              <label htmlFor="username">Username</label>
-              <Input
-                placeholder="Username"
-                icon="user"
-                type="text"
-                name="username"
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
-              />
-            </Form.Field>
-            <Form.Field>
-              <label htmlFor="password">Password</label>
-              <Input
-                placeholder="Password"
-                icon="lock"
-                type="password"
-                name="password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-              />
-            </Form.Field>
+            {!error ? (
+              <>
+                <Form.Field>
+                  <label htmlFor="username">Username</label>
+                  <Input
+                    placeholder="Username"
+                    icon="user"
+                    type="text"
+                    name="username"
+                    onChange={(e) => setUsername(e.target.value)}
+                    value={username}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <label htmlFor="password">Password</label>
+                  <Input
+                    placeholder="Password"
+                    icon="lock"
+                    type="password"
+                    name="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                  />
+                </Form.Field>
+              </>
+            ) : (
+              <>
+                <Form.Field>
+                  <label htmlFor="username">Username</label>
+                  <Form.Input
+                    error={{
+                      content:
+                        "Username or password are incorrect, please try again",
+                      pointing: "above",
+                    }}
+                    placeholder="Username"
+                    icon="user"
+                    type="text"
+                    name="username"
+                    onChange={(e) => setUsername(e.target.value)}
+                    value={username}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <label htmlFor="password">Password</label>
+                  <Form.Input
+                    error={{
+                      content:
+                        "Username or password are incorrect, please try again",
+                      pointing: "above",
+                    }}
+                    placeholder="Password"
+                    icon="lock"
+                    type="password"
+                    name="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                  />
+                </Form.Field>
+              </>
+            )}
           </Form>
         </Modal.Content>
         <Modal.Actions>
