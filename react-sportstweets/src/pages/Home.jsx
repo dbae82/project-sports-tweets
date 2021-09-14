@@ -6,7 +6,7 @@ import background from "../assets/nba-teams.png";
 import splashGif from "../assets/splash-card.gif";
 import "./home.css";
 
-const Home = () => {
+const Home = (props) => {
   return (
     <div className="home-container">
       <div className="home-container__background">
@@ -26,7 +26,7 @@ const Home = () => {
               <p>
                 Powered by Twitter <Icon name='twitter' /> Sports Tweets is your one stop shop to read up on all the latest news about your favorite sport team. Register below or, if you already have an account with us, log in above.
               </p>
-              <RegisterForm />
+              <RegisterForm push={props.history.push}/>
             </Container>
           </Grid.Column>
         </Grid>

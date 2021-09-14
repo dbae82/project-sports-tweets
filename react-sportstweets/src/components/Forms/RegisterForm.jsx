@@ -24,7 +24,7 @@ const RegisterForm = (props) => {
 
   function handleChange(event) {
     event.preventDefault();
-    const foundTeam = favTeams.filter(function(value, index) {
+    const foundTeam = favTeams.filter(function (value, index) {
       if (value.key === event.target.innerText) return true;
     });
     setFavTeam(foundTeam[0]._id);
@@ -35,10 +35,12 @@ const RegisterForm = (props) => {
     const user = { username, email, password, favTeam };
     const login = { username, password };
     AuthModel.register(user).then((json) => {
-      if (json.status === 400 && json.status === 500) {
+      if (json.status === 400 || json.status === 500) {
         setError(json.message);
       }
-
+      // setError("hello")
+      // console.log(error);
+      
       if (json.status === 201) {
         AuthModel.login(login).then((json) => {
           if (json.status === 400) {
@@ -50,6 +52,7 @@ const RegisterForm = (props) => {
             UserModel.show().then((json) => {
               setUser(json.data);
             });
+            props.push('/profile')
           }
         });
       }
@@ -59,28 +62,65 @@ const RegisterForm = (props) => {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <Form.Field>
-          <label htmlFor="username">Username</label>
-          <Input
-            placeholder="Username"
-            icon="user"
-            type="text"
-            name="username"
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-          />
-        </Form.Field>
-        <Form.Field>
-          <label htmlFor="email">Email</label>
-          <Input
-            placeholder="example@email.com"
-            icon="mail"
-            type="text"
-            name="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
-        </Form.Field>
+        {!error ? (
+          <>
+            <Form.Field>
+              <label htmlFor="username">Username</label>
+              <Form.Input
+                placeholder="Username"
+                icon="user"
+                type="text"
+                name="username"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label htmlFor="email">Email</label>
+              <Form.Input
+                placeholder="example@email.com"
+                icon="mail"
+                type="text"
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+            </Form.Field>
+          </>
+        ) : (
+          <>
+            <Form.Field>
+              <label htmlFor="username">Username</label>
+              <Form.Input
+                error={{
+                  content: "Username or email already in use, please try again",
+                  pointing: "above",
+                }}
+                placeholder="Username"
+                icon="user"
+                type="text"
+                name="username"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label htmlFor="email">Email</label>
+              <Form.Input
+                error={{
+                  content: "Username or email already in use, please try again",
+                  pointing: "above",
+                }}
+                placeholder="example@email.com"
+                icon="mail"
+                type="text"
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+            </Form.Field>
+          </>
+        )}
         <Form.Field>
           <label htmlFor="password">Password</label>
           <Input
