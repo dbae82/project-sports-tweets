@@ -80,13 +80,13 @@ const Profile = (props) => {
   };
 
   return (
-    <body style={{ background: 'rgb(248, 130, 20)', color: 'rgb(248, 130, 20)'}}>
+    // <body style={{ background: 'rgb(248, 130, 20)', color: 'rgb(248, 130, 20)'}}>
       <Container className="profile-container">
         <div className="profile-container__hero">
           <h1
             style={{
               background: `linear-gradient(to top, black, transparent), url(${user.favTeam.artUrl})`,
-              backgroundPosition: "top",
+              backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
             }}
@@ -114,7 +114,7 @@ const Profile = (props) => {
               />
               <Menu.Item
                 as="a"
-                name="favorite team"
+                name="favorite sport"
                 active={item === "favorite team"}
                 onClick={() => itemClick("favorite team")}
               />
@@ -128,7 +128,7 @@ const Profile = (props) => {
               </Menu.Menu>
             </Menu>
             {item === "bio" ? (
-              <Segment raised className="profile-container__segment" style={{background: 'rgb(0, 122, 193)'}}>
+              <Segment raised className="profile-container__segment">
                 {user.bio === undefined ? (
                   <h3>Update your bio to tell us a little about yourself 👍</h3>
                 ) : (
@@ -136,11 +136,11 @@ const Profile = (props) => {
                 )}
               </Segment>
             ) : item === "favorite team" ? (
-              <Segment raised className="profile-container__segment" style={{background: 'rgb(0, 122, 193)'}}>
+              <Segment raised className="profile-container__segment">
                 <h3>{user.favTeam.value}</h3>
               </Segment>
             ) : (
-              <Segment raised className="profile-container__segment" style={{background: 'rgb(0, 122, 193)'}}>
+              <Segment raised className="profile-container__segment">
                 <Form onSubmit={handleSubmit}>
                   <Form.Field>
                     <label htmlFor="bio">Bio</label>
@@ -168,7 +168,7 @@ const Profile = (props) => {
                   <Form.Field>
                     <label htmlFor="favTeam">Favorite Team</label>
                     <Dropdown
-                      placeholder="Select Your Favorite Team"
+                      placeholder="Select Your Favorite Sport"
                       fluid
                       selection
                       options={favTeams}
@@ -218,7 +218,7 @@ const Profile = (props) => {
           </Grid.Column>
         </Grid>
       </Container>
-    </body>
+    // </body>
   );
 };
 

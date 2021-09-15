@@ -10,12 +10,12 @@ The user will be able to change team selection and choose within their profile t
 
 # MVP
 - [x] Use a database - will be using MongoDB Atlas
-- [ ] Build a full-stack application - building a MERN app
+- [x] Build a full-stack application - building a MERN app
 - [x] Create a complete product - full CRUD functionality will be the users model
-- [ ] Create a focused product. Know which features are essential to build for your MVP and which to set aside for later.
+- [x] Create a focused product. Know which features are essential to build for your MVP and which to set aside for later.
 - [x] Craft thoughtful user stories that are significant enough to help you ensure a pleasing and logical user experience.
-- [ ] Handle errors gracefully, and provide useful feedback to users when errors or validation failures do occur.
-- [ ] Make a product that's impressive-looking; up your design and style game to kick your portfolio up a notch.
+- [x] Handle errors gracefully, and provide useful feedback to users when errors or validation failures do occur.
+- [x] Make a product that's impressive-looking; up your design and style game to kick your portfolio up a notch.
 - [ ] Deploy your application online
 
 # Wireframes
@@ -41,14 +41,14 @@ Profile Page
 
 - Sprint 1
   - [x] Build User and Team models and schemas 
-  - [ ] Connect Twitter Api to react front end
+  - [x] Connect Twitter Api to react front end
   - [x] Build seed file for Team models
-  - [ ] Create styles for each team
+  - [x] Create styles for each team
 
 - Sprint 3
   - [x] Set up auth using JWT
   - [x] Set up JWT on front end
-  - [ ] Set up error handling for sign up and sign in forms
+  - [x] Set up error handling for sign up and sign in forms
   - [x] Build login and register components for frontend
 
 - Sprint 4

@@ -136,9 +136,9 @@ const RegisterForm = (props) => {
           />
         </Form.Field>
         <Form.Field>
-          <label htmlFor="favTeam">Favorite Team</label>
+          <label htmlFor="favTeam">Favorite Sport</label>
           <Dropdown
-            placeholder="Select Your Favorite Team"
+            placeholder="Select Your Favorite Sport"
             fluid
             selection
             options={favTeams}
