@@ -12,6 +12,7 @@ const TweetCard = (props) => {
           <img
             src={props.data.includes.users[0].profile_image_url}
             id="twitter-profile-image"
+            alt="profile-avatar"
           />{" "}
           @{props.data.includes.users[0].username}
         </Feed.Label>

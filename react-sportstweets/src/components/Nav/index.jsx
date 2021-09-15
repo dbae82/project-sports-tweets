@@ -31,7 +31,7 @@ const Nav = (props) => {
         setUser(json.data);
       });
     }
-  }, []);
+  }, [setUser]);
 
   const logout = () => {
     setUser(null);

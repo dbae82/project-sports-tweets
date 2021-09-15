@@ -3,7 +3,7 @@ import { Container } from "semantic-ui-react";
 import { io } from "socket.io-client";
 
 import TweetFeed from "../components/TweetFeed";
-import { TweetModel, UserModel } from "../models";
+import { UserModel } from "../models";
 
 import { userState } from "../recoil/atoms";
 import { useRecoilState } from "recoil";
@@ -31,7 +31,7 @@ const TweetsContainer = (props) => {
       });
       // connections.delete(socket)
     };
-  }, []);
+  }, [setUser]);
 
   console.log(user);
 

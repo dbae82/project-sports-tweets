@@ -11,7 +11,6 @@ import {
   TextArea,
   Button,
   Modal,
-  Divider,
   Input,
   Dropdown,
 } from "semantic-ui-react";
@@ -83,14 +82,7 @@ const Profile = (props) => {
     // <body style={{ background: 'rgb(248, 130, 20)', color: 'rgb(248, 130, 20)'}}>
       <Container className="profile-container">
         <div className="profile-container__hero">
-          <h1
-            style={{
-              background: `linear-gradient(to top, black, transparent), url(${user.favTeam.artUrl})`,
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-            }}
-          ></h1>
+          <img src={user.favTeam.artUrl} alt='favorite-sport' />
         </div>
         <Grid>
           <Grid.Column width={5}>
@@ -166,7 +158,7 @@ const Profile = (props) => {
                   </Form.Field>
                   {/* <Divider /> */}
                   <Form.Field>
-                    <label htmlFor="favTeam">Favorite Team</label>
+                    <label htmlFor="favTeam">Favorite Sport</label>
                     <Dropdown
                       placeholder="Select Your Favorite Sport"
                       fluid

@@ -1,4 +1,4 @@
-import { Router } from "react-router-dom";
+// import { Router } from "react-router-dom";
 import { Container, Image, Grid, Divider, Header, Icon } from "semantic-ui-react";
 import RegisterForm from "../components/Forms/RegisterForm";
 
