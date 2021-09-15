@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Form, Input, Button, Dropdown } from "semantic-ui-react";
+import { Form, Input, Button, Dropdown, Message } from "semantic-ui-react";
 
 import { AuthModel, UserModel, TeamModel } from "../../models";
 
@@ -40,7 +40,7 @@ const RegisterForm = (props) => {
       }
       // setError("hello")
       // console.log(error);
-      
+
       if (json.status === 201) {
         AuthModel.login(login).then((json) => {
           if (json.status === 400) {
@@ -52,7 +52,7 @@ const RegisterForm = (props) => {
             UserModel.show().then((json) => {
               setUser(json.data);
             });
-            props.push('/profile')
+            props.push("/profile");
           }
         });
       }
@@ -61,6 +61,15 @@ const RegisterForm = (props) => {
 
   return (
     <div>
+      {!error ? (
+        <></>
+      ) : (
+        <Message
+          error
+          header="Please try again"
+          content="Username or email already in use, please try again"
+        />
+      )}
       <Form onSubmit={handleSubmit}>
         {!error ? (
           <>
@@ -92,10 +101,7 @@ const RegisterForm = (props) => {
             <Form.Field>
               <label htmlFor="username">Username</label>
               <Form.Input
-                error={{
-                  content: "Username or email already in use, please try again",
-                  pointing: "above",
-                }}
+                error
                 placeholder="Username"
                 icon="user"
                 type="text"
@@ -107,10 +113,7 @@ const RegisterForm = (props) => {
             <Form.Field>
               <label htmlFor="email">Email</label>
               <Form.Input
-                error={{
-                  content: "Username or email already in use, please try again",
-                  pointing: "above",
-                }}
+                error
                 placeholder="example@email.com"
                 icon="mail"
                 type="text"

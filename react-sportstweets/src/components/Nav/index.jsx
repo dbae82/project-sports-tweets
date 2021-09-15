@@ -9,6 +9,7 @@ import {
   Form,
   Input,
   Image,
+  Message,
 } from "semantic-ui-react";
 
 import { userState } from "../../recoil/atoms";
@@ -98,6 +99,15 @@ const Nav = (props) => {
       >
         <Modal.Header>Log In</Modal.Header>
         <Modal.Content>
+          {!error ? (
+            <></>
+          ) : (
+            <Message
+              error
+              header="Please try again"
+              content="Username or password are incorrect, please try again"
+            />
+          )}
           <Form onSubmit={handleSubmit}>
             {!error ? (
               <>
@@ -129,11 +139,7 @@ const Nav = (props) => {
                 <Form.Field>
                   <label htmlFor="username">Username</label>
                   <Form.Input
-                    error={{
-                      content:
-                        "Username or password are incorrect, please try again",
-                      pointing: "above",
-                    }}
+                    error
                     placeholder="Username"
                     icon="user"
                     type="text"
@@ -145,11 +151,7 @@ const Nav = (props) => {
                 <Form.Field>
                   <label htmlFor="password">Password</label>
                   <Form.Input
-                    error={{
-                      content:
-                        "Username or password are incorrect, please try again",
-                      pointing: "above",
-                    }}
+                    error
                     placeholder="Password"
                     icon="lock"
                     type="password"
