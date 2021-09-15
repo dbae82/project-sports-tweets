@@ -15,10 +15,9 @@ const TweetCard = (props) => {
           />{" "}
           @{props.data.includes.users[0].username}
         </Feed.Label>
-        <Feed.Content>
+        <Feed.Content id="tweet-card">
           {props.data.data ? (
             <>
-              <p id="tweet-content">{props.data.data.text}
               <Button
                 as="a"
                 href={tweetUrl}
@@ -29,7 +28,7 @@ const TweetCard = (props) => {
                 target="_blank"
                 floated="right"
               ></Button>
-              </p>
+              <p id="tweet-content">{props.data.data.text}</p>
             </>
           ) : (
             <Dimmer active inverted>

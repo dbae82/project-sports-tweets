@@ -5,9 +5,9 @@ import "./footer.css";
 const Footer = () => {
   return (
     <div className="footer">
-      <Segment vertical inverted>
+      <Segment vertical>
         <Container textAlign="center">
-          <List horizontal divided link size="small" inverted>
+          <List horizontal divided link size="small">
             <List.Item as="a" href="mailto:dbae82@gmail.com">
               Dan Bae
             </List.Item>

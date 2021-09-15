@@ -60,7 +60,7 @@ const Nav = (props) => {
 
   return (
     <div className="nav-bar">
-      <Menu fixed="top" inverted>
+      <Menu fixed="top">
         <Container>
           <NavLink exact to="/">
             <Menu.Item as="a" header>
