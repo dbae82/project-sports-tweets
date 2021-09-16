@@ -12,7 +12,7 @@ import "./TweetsContainer.css";
 
 const TweetsContainer = (props) => {
   const [user, setUser] = useRecoilState(userState);
-  const socket = io("http://localhost:4040");
+  const socket = io("http://localhost:4444");
   // const connections = new Set()
   const [tweets, setTweets] = useState([]);
 
@@ -33,7 +33,7 @@ const TweetsContainer = (props) => {
     };
   }, [setUser]);
 
-  console.log(user);
+  // console.log(user);
 
   const fetchTweets = () => {
     // TweetModel.allFake().then((json) => {
