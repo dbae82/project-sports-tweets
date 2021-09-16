@@ -18,11 +18,21 @@ const io = socketIo(server, { cors: {
     credentials: false
 }})
 
+let newRules;
+let rules;
+
+app.get('/rules/:id', (req, res) => {
+    newRules = req.params.id;
+    console.log(newRules, "++++++++++++++++++++++++");
+    rules = [{ value: `${newRules}` }];
+    res.send('got new rules');
+})
 
 const rulesURL = 'https://api.twitter.com/2/tweets/search/stream/rules'
 const streamURL = 'https://api.twitter.com/2/tweets/search/stream?tweet.fields=public_metrics&expansions=author_id&user.fields=profile_image_url'
 
-const rules = [{ value: 'nfl lang:en' }]
+
+console.log(rules, "=============================");
 
 async function getRules() {
     const response = await needle('get', rulesURL, {
@@ -95,6 +105,7 @@ io.on('connection', async () => {
         currentRules = await getRules()
         await deleteRules(currentRules)
         await setRules()
+        console.log(currentRules);
     } catch (error) {
         console.error(error);
         process.exit(1)
