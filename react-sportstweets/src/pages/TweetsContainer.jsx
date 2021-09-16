@@ -33,7 +33,7 @@ const TweetsContainer = (props) => {
     };
   }, [setUser]);
 
-  console.log(user);
+  // console.log(user);
 
   const fetchTweets = () => {
     // TweetModel.allFake().then((json) => {

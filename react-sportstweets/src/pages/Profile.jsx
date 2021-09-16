@@ -61,13 +61,14 @@ const Profile = (props) => {
       }
     });
   }
-
+  
   function handleChange(event) {
     event.preventDefault();
     const foundTeam = favTeams.filter(function (value, index) {
       if (value.key === event.target.innerText) return true;
     });
     setFavTeam(foundTeam[0]._id);
+    fetch(`http://localhost:4040/rules/${foundTeam[0].rules}`).then(console.log("sent"))
   }
 
   const deleteUser = (event) => {
